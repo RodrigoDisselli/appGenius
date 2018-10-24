@@ -29,13 +29,13 @@ public class ColorBtn  {
 
                 color.colorClick();
                 if(color.click == 6){
-                    Toast.makeText(this.menuActivity, "Errado!", Toast.LENGTH_SHORT).show();
                     finishGame();
                 }
 
             }else{
                 System.out.print(" ERROR");
-                finishGame();
+                returnToMainActivity();
+
                 //Toast.makeText(ColorBtn.this.context, "Error!", Toast.LENGTH_SHORT).show();
                 //ColorBtn.this.context.startActivity(new Intent(ColorBtn.this.context,MainActivity.class));
 
@@ -46,6 +46,13 @@ public class ColorBtn  {
         }
 
 
+    }
+
+    public void returnToMainActivity(){
+        color.stringColor = "";
+        color.click = 0;
+        Intent intent = new Intent(this.menuActivity, MainActivity.class);
+        this.menuActivity.startActivity(intent);
     }
 
     public void finishGame(){

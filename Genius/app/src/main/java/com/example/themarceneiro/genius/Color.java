@@ -34,6 +34,7 @@ public class Color {
     public int[] makeArray(){
         Random rand = new Random();
         System.out.print("\nmake Array ");
+
         for(int i=0; i<6; i++){
             colorArray[i] = rand.nextInt(4);
             System.out.print(colorArray[i]);
@@ -48,7 +49,6 @@ public class Color {
     }
 
     public int[] getColorArray(){
-
         colorArray = makeArray();
         System.out.print(" \n");
         return colorArray;
