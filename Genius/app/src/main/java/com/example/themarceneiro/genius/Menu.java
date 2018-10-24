@@ -26,7 +26,7 @@ public class Menu extends AppCompatActivity {
         greenBtn = (Button) findViewById(R.id.button5);
         yellowBtn = (Button) findViewById(R.id.button6);
 
-
+        //envia a ação dde click dos botoes do jogo
 
         redBtn.setOnClickListener( new View.OnClickListener() {
             @Override

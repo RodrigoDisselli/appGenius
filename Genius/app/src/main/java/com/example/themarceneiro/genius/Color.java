@@ -9,6 +9,7 @@ public class Color {
     public static String stringColor = "";
 
     public void sendColor(){
+        //transforma o array em string
         for(int i=0; i<6; i++){
             switch (colorArray[i]) {
                 case 0:
@@ -37,9 +38,11 @@ public class Color {
 
         for(int i=0; i<6; i++){
             colorArray[i] = rand.nextInt(4);
+            //gera o numero aleatorio e o insere no vetor
             System.out.print(colorArray[i]);
         }
         sendColor();
+        //depois de gerar o array o transforma em string
         System.out.print(" \n");
         return colorArray;
     }
@@ -50,11 +53,13 @@ public class Color {
 
     public int[] getColorArray(){
         colorArray = makeArray();
+        // recebe dentro do array o resultado do metodo que gera os valores aleatorios
         System.out.print(" \n");
         return colorArray;
     }
 
     public int colorClick(){
+        //metodo que adiciona ao contador de clicks
         return click++;
     }
 

@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
                 System.out.print("\n\nCONECTADO!!!!!!!!!");
                 Toast.makeText(getApplicationContext(), "O dispositivo está conectado!", Toast.LENGTH_SHORT).show();
                 startStage.changeState();
+                //metodo que confirma o status ddo app para verificar se o botao conectar ja foi clicado
             }
         });
 
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick( View v){
                 if(startStage.getState()== 1){
                     openMain();
+                    //chama a tela do jogo
                 }else{
                     Toast.makeText(getApplicationContext(), "Conecte o dispositivo para começar! ", Toast.LENGTH_SHORT).show();
                 }
@@ -46,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openMain() {
+        //muda para pagina do jogo
         Intent intent = new Intent(this, Menu.class);
         startActivity(intent);
     }

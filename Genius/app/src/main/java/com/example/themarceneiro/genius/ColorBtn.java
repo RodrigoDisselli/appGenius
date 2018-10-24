@@ -19,50 +19,49 @@ public class ColorBtn  {
     }
 
     public void getColorCode(int code){
-
+        //verifica se o botao clickado eh o correto
         if(color.click <=5){
             System.out.print(" Click:" + color.click + " | code:" + code);
 
             if (codeList[color.click] == code){
+                //se o botao eh o correto
                 System.out.print(" OK\n");
-                Toast.makeText(this.menuActivity, String.valueOf(color.click + 1), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this.menuActivity, String.valueOf(color.click + 1), Toast.LENGTH_SHORT).show();
+                //mostra menssagem contando o numero de clicks
 
                 color.colorClick();
-                if(color.click == 6){
+                if(color.click == color.stringColor.length()){
+                    //se a string toda ja foi percorrida
+                    Toast.makeText(this.menuActivity, "Parabéns", Toast.LENGTH_SHORT).show();
                     returnToMainActivity();
+                    //retorna a pagina inicial
                 }
 
             }else{
+                //se o botao clicado eh incorreto
+                Toast.makeText(this.menuActivity, ":(", Toast.LENGTH_SHORT).show();
                 System.out.print(" ERROR");
                 returnToMainActivity();
-
-                //Toast.makeText(ColorBtn.this.context, "Error!", Toast.LENGTH_SHORT).show();
-                //ColorBtn.this.context.startActivity(new Intent(ColorBtn.this.context,MainActivity.class));
-
+                //retorna a pagina inicial
             }
 
         }else{
-            finishGame();
+            returnToMainActivity();
+            //retorna a pagina inicial
         }
 
 
     }
 
     public void returnToMainActivity(){
+        //retorna a pagina inicial
         color.stringColor = "";
         color.click = 0;
         Intent intent = new Intent(this.menuActivity, MainActivity.class);
         this.menuActivity.startActivity(intent);
     }
 
-    public void finishGame(){
-        System.out.print("\nThe game will Restart\n\n");
-        color.stringColor = "";
-        color.click = 0;
-        color.makeArray();
-
-
-    }
+    //pega os valores que identificam o botao clickado
 
     public void redBtn(){
         getColorCode(0);
