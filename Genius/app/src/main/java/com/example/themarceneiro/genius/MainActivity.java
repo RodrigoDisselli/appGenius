@@ -1,6 +1,8 @@
 package com.example.themarceneiro.genius;
 
+import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
@@ -9,20 +11,23 @@ import android.content.Intent;
 import android.widget.Toast;
 import android.view.View.OnClickListener;
 
+import java.io.IOException;
+
 public class MainActivity extends AppCompatActivity {
 
     private Button connectBtn;
     private Button startBtn;
+    private Button enabledBluetooth;
 
     Start startStage = new Start();
 
     //declaração para o bluetooth
     BluetoothAdapter myBluetooth = null;
+    BluetoothDevice myDevice = null;
+
     private static final int ENABLED_BLUETOOTH = 1;
     private static final int CONECTION_BLUETOOTH = 2;
     boolean conection = false;
-
-
 
 
     @Override
@@ -32,25 +37,12 @@ public class MainActivity extends AppCompatActivity {
 
         connectBtn = (Button) findViewById(R.id.button);
         startBtn = (Button) findViewById(R.id.button3);
-
+        enabledBluetooth = (Button) findViewById(R.id.enabledBluetooth);
 
         //area do codigo bluetooth
         myBluetooth = BluetoothAdapter.getDefaultAdapter();
 
-        if(myBluetooth == null){
-            Toast.makeText(getApplicationContext(), "O dispositivo não possuí bluetooth!", Toast.LENGTH_SHORT).show();
-        } else if(myBluetooth.isEnabled()){
-            startStage.changeState();
-        }
-        if(!myBluetooth.isEnabled()){
-            startStage.changeState();
-            //metodo que confirma o status ddo app para verificar se o botao conectar ja foi clicado
-            Intent enabledBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            startActivityForResult(enabledBtIntent, ENABLED_BLUETOOTH);
-            //abre a janela de ativação do bluetooth do aparelho
-        }
-
-
+        turnOnBluetooth();
 
         connectBtn.setOnClickListener( new View.OnClickListener() {
             @Override
@@ -59,6 +51,14 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "O dispositivo está conectado!", Toast.LENGTH_SHORT).show();
                 //bluetooth sendo checado
                 enabledConection();
+            }
+        });
+
+
+        enabledBluetooth.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick( View v){
+                turnOnBluetooth();
             }
         });
 
@@ -98,4 +98,33 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode)
+        {
+            case CONECTION_BLUETOOTH:
+                if (resultCode == Activity.RESULT_OK) {
+                }else {
+                }
+                break;
+        }
+    }
+
+
+    public void turnOnBluetooth(){
+        if(myBluetooth == null){
+            Toast.makeText(getApplicationContext(), "O dispositivo não possuí bluetooth!", Toast.LENGTH_SHORT).show();
+        } else if(myBluetooth.isEnabled()){
+            startStage.changeState();
+        }
+        if(!myBluetooth.isEnabled()){
+            startStage.changeState();
+            //metodo que confirma o status ddo app para verificar se o botao conectar ja foi clicado
+            Intent enabledBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(enabledBtIntent, ENABLED_BLUETOOTH);
+            //abre a janela de ativação do bluetooth do aparelho
+        }
+
+    }
 }
