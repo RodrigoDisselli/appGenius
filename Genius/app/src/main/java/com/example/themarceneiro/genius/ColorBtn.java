@@ -25,11 +25,11 @@ public class ColorBtn  {
 
             if (codeList[color.click] == code){
                 System.out.print(" OK\n");
-                Toast.makeText(this.menuActivity, "Certo!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this.menuActivity, String.valueOf(color.click + 1), Toast.LENGTH_SHORT).show();
 
                 color.colorClick();
                 if(color.click == 6){
-                    finishGame();
+                    returnToMainActivity();
                 }
 
             }else{
