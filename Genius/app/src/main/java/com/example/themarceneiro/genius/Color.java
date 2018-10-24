@@ -9,6 +9,8 @@ public class Color {
     public static String stringColor = "";
 
     public void sendColor(){
+        //esvazia a string antes de adicionar novas letras
+        stringColor = "";
         //transforma o array em string
         for(int i=0; i<6; i++){
             switch (colorArray[i]) {

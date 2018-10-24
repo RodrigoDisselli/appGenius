@@ -14,13 +14,17 @@ public class ColorBtn  {
     private static Context context;
     private Menu menuActivity;
 
+
+
     public ColorBtn (Menu main){
         this.menuActivity = main;
+        //recebe o context da activity Menu nessa não Activity
     }
 
     public void getColorCode(int code){
         //verifica se o botao clickado eh o correto
-        if(color.click <=5){
+        if(color.click <= color.stringColor.length() - 1){
+            //verifica se o a string toda nao foi percorrida
             System.out.print(" Click:" + color.click + " | code:" + code);
 
             if (codeList[color.click] == code){
