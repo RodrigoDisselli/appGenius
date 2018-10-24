@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <Button
+        android:id="@+id/btnConexao"
+        android:layout_width="match_parent"
+        android:layout_height="63dp"
+        android:layout_margin="10dp"
+        android:background="#f9f5f5"
+        android:textColor="@color/colorPrimary"
+        android:text="Conectar" />
+
+    <Button
+        android:id="@+id/btnLed1"
+        android:layout_width="match_parent"
+        android:layout_height="121dp"
+        android:layout_margin="10dp"
+        android:background="@android:color/holo_red_light"
+        android:text="Vermelho" />
+
+
+    <Button
+        android:id="@+id/btnLed2"
+        android:layout_width="match_parent"
+        android:layout_height="116dp"
+        android:layout_margin="10dp"
+        android:background="@android:color/holo_blue_dark"
+        android:text="Azul" />
+
+    <Button
+        android:id="@+id/btnLed3"
+        android:layout_width="match_parent"
+        android:layout_height="118dp"
+        android:layout_margin="10dp"
+        android:background="@android:color/holo_green_light"
+        android:text="Verde" />
+
+
+</LinearLayout>
