@@ -16,7 +16,7 @@ import java.util.Set;
 
 public class ListaDispositivos extends ListActivity {
 
-    private BluetoothAdapter meuBluetoothAdapter2 = null;
+    private BluetoothAdapter myBluetooth2 = null;
 
     static String ENDERECO_MAC = null;
 
@@ -26,9 +26,9 @@ public class ListaDispositivos extends ListActivity {
 
         ArrayAdapter<String> ArrayBluetooth = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
 
-        meuBluetoothAdapter2 = BluetoothAdapter.getDefaultAdapter();
+        myBluetooth2 = BluetoothAdapter.getDefaultAdapter();
 
-        Set<BluetoothDevice> dispositivosPareados = meuBluetoothAdapter2.getBondedDevices();
+        Set<BluetoothDevice> dispositivosPareados = myBluetooth2.getBondedDevices();
 
         if (dispositivosPareados.size() > 0){
             for (BluetoothDevice dispositivo : dispositivosPareados) {
