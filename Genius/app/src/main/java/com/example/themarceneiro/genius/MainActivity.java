@@ -13,6 +13,8 @@ import android.widget.Toast;
 import android.view.View.OnClickListener;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity {
@@ -21,12 +23,16 @@ public class MainActivity extends AppCompatActivity {
     private Button startBtn;
     private Button enabledBluetooth;
 
+    Color color = new Color();
+
     Start startStage = new Start();
 
     //declaração para o bluetooth
     BluetoothAdapter myBluetooth = null;
     BluetoothDevice myDevice = null;
     BluetoothSocket mySocket = null;
+
+    ConnectedThread connectedThread;
 
     UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb");
 
@@ -78,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
                         startStage.changeState();
                         //metodo que confirma o status ddo app para verificar se o botao conectar ja foi clicado
                         openMain();
+                        connectedThread.enviar(color.stringColor);
                     }else {
                         Toast.makeText(getApplicationContext(), "Conecte o dispositivo para começar! ", Toast.LENGTH_SHORT).show();
                     }
@@ -142,18 +149,22 @@ public class MainActivity extends AppCompatActivity {
                     myDevice = myBluetooth.getRemoteDevice(MAC);
 
                     try {
-
+                        //faz a conexão com o dispositivo bluetooth
                         mySocket = myDevice.createRfcommSocketToServiceRecord(MY_UUID);
 
                         mySocket.connect();
 
                         connection = true;
 
+                        connectedThread = new ConnectedThread(mySocket);
+                        connectedThread.start();
+
                         connectBtn.setText("Disconnect");
 
                         Toast.makeText(getApplicationContext(), "Você está conectado com " + MAC, Toast.LENGTH_SHORT).show();
 
                     } catch (IOException erro) {
+                        //caso nao consiga conectar
                         Toast.makeText(getApplicationContext(), "Erro ao conectar", Toast.LENGTH_SHORT).show();
                     }
 
@@ -161,6 +172,53 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Falha ao obter o MAC!", Toast.LENGTH_SHORT).show();
                 }
                 break;
+        }
+    }
+
+    //area para gerenciamento de conexão do bluetooth aula parte 7
+    private class ConnectedThread extends Thread {
+        private final InputStream mmInStream;
+        private final OutputStream mmOutStream;
+
+        public ConnectedThread(BluetoothSocket socket) {
+            InputStream tmpIn = null;
+            OutputStream tmpOut = null;
+
+            // Get the input and output streams, using temp objects because
+            // member streams are final
+            try {
+                tmpIn = socket.getInputStream();
+                tmpOut = socket.getOutputStream();
+            } catch (IOException e) { }
+
+            mmInStream = tmpIn;
+            mmOutStream = tmpOut;
+        }
+
+        public void run() {
+            byte[] buffer = new byte[1024];  // buffer store for the stream
+            int bytes; // bytes returned from read()
+
+            // Keep listening to the InputStream until an exception occurs
+            while (true) {
+                try {
+                    // Read from the InputStream
+                    bytes = mmInStream.read(buffer);
+                    // Send the obtained bytes to the UI activity
+                   // mHandler.obtainMessage(MESSAGE_READ, bytes, -1, buffer)
+                     //       .sendToTarget();
+                } catch (IOException e) {
+                    break;
+                }
+            }
+        }
+
+        /* Call this from the main activity to send data to the remote device */
+        public void enviar(String dadosEnviar) {
+            byte[] msgBuffer = dadosEnviar.getBytes();
+            try {
+                mmOutStream.write(msgBuffer);
+            } catch (IOException e) { }
         }
     }
 }
