@@ -27,8 +27,11 @@
         <activity android:name=".Menu" />
         <activity android:name=".ListaDispositivos"
             android:theme="@android:style/Theme.Dialog"
+
             android:label="Dispositivos disponíveis"
             />
     </application>
+
+
 
 </manifest>
