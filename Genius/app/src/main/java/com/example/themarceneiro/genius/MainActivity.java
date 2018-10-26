@@ -84,8 +84,11 @@ public class MainActivity extends AppCompatActivity {
                         startStage.changeState();
                         //metodo que confirma o status ddo app para verificar se o botao conectar ja foi clicado
                         openMain();
+
                         if(connection == true){
                             connectedThread.enviar(color.stringColor);
+                            System.out.print("A STRING ENVIADA = " + color.stringColor);
+                            Toast.makeText(getApplicationContext(), color.stringColor, Toast.LENGTH_SHORT).show();
                         }
                     }else {
                         Toast.makeText(getApplicationContext(), "Conecte o dispositivo para começar! ", Toast.LENGTH_SHORT).show();
