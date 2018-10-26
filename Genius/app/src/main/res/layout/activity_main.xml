@@ -14,7 +14,7 @@ tools:context=".Menu">
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="48dp"
-        android:background="@android:color/holo_blue_light"
+        android:background="@android:color/holo_red_light"
         android:text="CONNECT"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -55,17 +55,17 @@ tools:context=".Menu">
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="310dp"
-        android:layout_height="273dp"
+        android:layout_width="296dp"
+        android:layout_height="296dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginStart="35dp"
-        android:layout_marginLeft="35dp"
-        android:layout_marginTop="89dp"
-        android:layout_marginEnd="39dp"
-        android:layout_marginRight="39dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginLeft="44dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginRight="44dp"
         app:srcCompat="@drawable/app_logo" />
 </RelativeLayout>

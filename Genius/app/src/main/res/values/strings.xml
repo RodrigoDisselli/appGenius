@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Genius</string>
+    <string name="app_name">PixelTableApp</string>
     <string name="title_activity_login">Login</string>
 
     <!-- Strings related to login -->
